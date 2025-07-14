@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static com.neusfear.utils.VisualizationQuadrant.*;
 
-public class NoiseViewer extends JPanel {
+public class NoiseViewer2D extends JPanel {
 
     BufferedImage tlImage;
     BufferedImage trImage;
@@ -26,11 +26,11 @@ public class NoiseViewer extends JPanel {
 
     Map<VisualizationQuadrant, List<Float>> drawTimes;
 
-    public NoiseViewer(int width, int height,
-                       NoiseVisualizer tlVisualizer,
-                       NoiseVisualizer trVisualizer,
-                       NoiseVisualizer blVisualizer,
-                       NoiseVisualizer brVisualizer) {
+    public NoiseViewer2D(int width, int height,
+                         NoiseVisualizer tlVisualizer,
+                         NoiseVisualizer trVisualizer,
+                         NoiseVisualizer blVisualizer,
+                         NoiseVisualizer brVisualizer) {
 
         this.width = width;
         this.height = height;
@@ -42,7 +42,7 @@ public class NoiseViewer extends JPanel {
         this.drawTimes.put(BOTTOM_RIGHT, new ArrayList<>());
 
         // Start animation thread
-        startAnimation(tlVisualizer, trVisualizer, blVisualizer, brVisualizer);
+        startAnimation(1000, tlVisualizer, trVisualizer, blVisualizer, brVisualizer);
     }
 
     private float getAverageDrawTime(VisualizationQuadrant quadrant) {
@@ -62,13 +62,13 @@ public class NoiseViewer extends JPanel {
         drawTimes.get(quadrant).add(drawTime);
     }
 
-    private void startAnimation(NoiseVisualizer tlVisualizer, NoiseVisualizer trVisualizer, NoiseVisualizer blVisualizer, NoiseVisualizer brVisualizer) {
+    private void startAnimation(int iterations, NoiseVisualizer tlVisualizer, NoiseVisualizer trVisualizer, NoiseVisualizer blVisualizer, NoiseVisualizer brVisualizer) {
         new Thread(() -> {
-            for (int z = 0; z < 1000; z++) {
-                addDrawTimesByQuadrant(TOP_LEFT, tlVisualizer.populateNoiseValues(z * 5));
-                addDrawTimesByQuadrant(TOP_RIGHT, trVisualizer.populateNoiseValues(z * 5));
-                addDrawTimesByQuadrant(BOTTOM_LEFT, blVisualizer.populateNoiseValues(z * 5));
-                addDrawTimesByQuadrant(BOTTOM_RIGHT, brVisualizer.populateNoiseValues(z * 5));
+            for (int i = 0; i < iterations; i++) {
+                addDrawTimesByQuadrant(TOP_LEFT, tlVisualizer.populateNoiseValues(i));
+                addDrawTimesByQuadrant(TOP_RIGHT, trVisualizer.populateNoiseValues(i));
+                addDrawTimesByQuadrant(BOTTOM_LEFT, blVisualizer.populateNoiseValues(i));
+                addDrawTimesByQuadrant(BOTTOM_RIGHT, brVisualizer.populateNoiseValues(i));
                 tlImage = tlVisualizer.getImage();
                 trImage = trVisualizer.getImage();
                 blImage = blVisualizer.getImage();

@@ -14,7 +14,7 @@ public class MountainNoiseVisualizer extends NoiseVisualizer {
     }
 
     @Override
-    public float populateNoiseValues(int z1) {
+    public float populateNoiseValues(int iteration) {
 
         long startTime = System.currentTimeMillis();
 

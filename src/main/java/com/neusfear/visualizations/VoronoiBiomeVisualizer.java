@@ -25,7 +25,7 @@ public class VoronoiBiomeVisualizer extends NoiseVisualizer{
     }
 
     @Override
-    public float populateNoiseValues(int z1) {
+    public float populateNoiseValues(int iteration) {
         float noiseOctave1, noiseOctave2;
         long startTime = System.currentTimeMillis();
 
@@ -34,15 +34,15 @@ public class VoronoiBiomeVisualizer extends NoiseVisualizer{
         for (int x1 = 0; x1 < height; x1++) {
             for (int y1 = 0; y1 < width; y1++) {
                 if (SWIRL) {
-                    noiseOctave1 = SWIRL_AMOUNT_1 * OpenSimplex2S.noise3_ImproveXY(0, (x1 + xOffset) * NOISE_SCALE_1, (y1 + yOffset) * NOISE_SCALE_1, z1);
-                    noiseOctave2 = SWIRL_AMOUNT_2 * OpenSimplex2S.noise3_ImproveXY(0, (x1 + xOffset) * NOISE_SCALE_2, (y1 + yOffset) * NOISE_SCALE_2, z1);
+                    noiseOctave1 = SWIRL_AMOUNT_1 * OpenSimplex2S.noise3_ImproveXY(0, (x1 + xOffset) * NOISE_SCALE_1, (y1 + yOffset) * NOISE_SCALE_1, iteration);
+                    noiseOctave2 = SWIRL_AMOUNT_2 * OpenSimplex2S.noise3_ImproveXY(0, (x1 + xOffset) * NOISE_SCALE_2, (y1 + yOffset) * NOISE_SCALE_2, iteration);
                     xd = (x1 + xOffset + noiseOctave1 + noiseOctave2) * SCALE;
                     yd = (y1 + yOffset + noiseOctave1 + noiseOctave2) * SCALE;
-                    zd = (z1 + noiseOctave1 + noiseOctave2) * SCALE;
+                    zd = (iteration + noiseOctave1 + noiseOctave2) * SCALE;
                 } else {
                     xd = (x1 + xOffset) * SCALE;
                     yd = (y1 + yOffset) * SCALE;
-                    zd = z1 * SCALE;
+                    zd = iteration * SCALE;
                 }
 
                 if (visType != 0 && visType != 1) {

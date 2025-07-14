@@ -23,7 +23,7 @@ public abstract class NoiseVisualizer {
         yOffset = quadrant.isBottom() ? height : 0;
     }
 
-    public abstract float populateNoiseValues(int z1);
+    public abstract float populateNoiseValues(int iteration);
 
     public abstract BufferedImage getImage();
 }

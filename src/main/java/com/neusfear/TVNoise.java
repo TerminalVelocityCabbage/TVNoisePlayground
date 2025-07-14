@@ -1,7 +1,7 @@
 package com.neusfear;
 
 import com.neusfear.visualizations.Basic2DNoiseVisualizer;
-import com.neusfear.visualizations.NoiseViewer;
+import com.neusfear.visualizations.NoiseViewer2D;
 import com.neusfear.visualizations.BilinearInterpolationVisualizer;
 
 import javax.swing.*;
@@ -19,7 +19,7 @@ public class TVNoise {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(width, height);
 
-        frame.add(new NoiseViewer(width, height,
+        frame.add(new NoiseViewer2D(width, height,
                 new Basic2DNoiseVisualizer(TOP_LEFT, width / 2, height / 2, 0),
                 new Basic2DNoiseVisualizer(TOP_RIGHT, width / 2, height / 2, 0),
                 new BilinearInterpolationVisualizer(BOTTOM_LEFT, width / 2, height / 2, 0),
