@@ -1,20 +1,11 @@
 package com.neusfear.visualizations;
 
-import com.neusfear.utils.VisualizationQuadrant;
-
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static com.neusfear.utils.VisualizationQuadrant.*;
 
-public class NoiseViewer2D extends NoiseViewer {
+public class NoiseViewer3D extends NoiseViewer {
 
     BufferedImage tlImage;
     BufferedImage trImage;
@@ -23,38 +14,41 @@ public class NoiseViewer2D extends NoiseViewer {
 
     final int width;
     final int height;
+    final int depth;
 
-    public NoiseViewer2D(int width, int height,
-                         NoiseVisualizer2D tlVisualizer,
-                         NoiseVisualizer2D trVisualizer,
-                         NoiseVisualizer2D blVisualizer,
-                         NoiseVisualizer2D brVisualizer) {
+    public NoiseViewer3D(int width, int height, int depth,
+                         NoiseVisualizer3D tlVisualizer,
+                         NoiseVisualizer3D trVisualizer,
+                         NoiseVisualizer3D blVisualizer,
+                         NoiseVisualizer3D brVisualizer) {
 
         this.width = width;
         this.height = height;
-
-        this.drawTimes = new HashMap<>();
-        this.drawTimes.put(TOP_LEFT, new ArrayList<>());
-        this.drawTimes.put(TOP_RIGHT, new ArrayList<>());
-        this.drawTimes.put(BOTTOM_LEFT, new ArrayList<>());
-        this.drawTimes.put(BOTTOM_RIGHT, new ArrayList<>());
+        this.depth = depth;
 
         // Start animation thread
-        startAnimation(1000, tlVisualizer, trVisualizer, blVisualizer, brVisualizer);
+        startAnimation(1000, 50, tlVisualizer, trVisualizer, blVisualizer, brVisualizer);
     }
 
-    private void startAnimation(int iterations, NoiseVisualizer2D tlVisualizer, NoiseVisualizer2D trVisualizer, NoiseVisualizer2D blVisualizer, NoiseVisualizer2D brVisualizer) {
+    private void startAnimation(int iterations, int frameDelayMillis, NoiseVisualizer3D tlVisualizer, NoiseVisualizer3D trVisualizer, NoiseVisualizer3D blVisualizer, NoiseVisualizer3D brVisualizer) {
         new Thread(() -> {
             for (int i = 0; i < iterations; i++) {
                 addDrawTimesByQuadrant(TOP_LEFT, tlVisualizer.populateNoiseValues(i));
                 addDrawTimesByQuadrant(TOP_RIGHT, trVisualizer.populateNoiseValues(i));
                 addDrawTimesByQuadrant(BOTTOM_LEFT, blVisualizer.populateNoiseValues(i));
                 addDrawTimesByQuadrant(BOTTOM_RIGHT, brVisualizer.populateNoiseValues(i));
-                tlImage = tlVisualizer.getImage();
-                trImage = trVisualizer.getImage();
-                blImage = blVisualizer.getImage();
-                brImage = brVisualizer.getImage();
-                repaint();
+                try {
+                    for (int d = 0; d < depth; d++) {
+                        tlImage = tlVisualizer.getImage(d);
+                        trImage = trVisualizer.getImage(d);
+                        blImage = blVisualizer.getImage(d);
+                        brImage = brVisualizer.getImage(d);
+                        repaint();
+                        Thread.sleep(frameDelayMillis);
+                    }
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }).start();
     }

@@ -5,7 +5,7 @@ import com.neusfear.utils.VisualizationQuadrant;
 
 import java.awt.image.BufferedImage;
 
-public class MountainNoiseVisualizer extends NoiseVisualizer {
+public class MountainNoiseVisualizer extends NoiseVisualizer2D {
 
     double[][] heights = new double[width][height];
 

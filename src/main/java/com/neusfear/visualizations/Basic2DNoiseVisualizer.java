@@ -5,7 +5,7 @@ import com.neusfear.utils.VisualizationQuadrant;
 
 import java.awt.image.BufferedImage;
 
-public class Basic2DNoiseVisualizer extends NoiseVisualizer {
+public class Basic2DNoiseVisualizer extends NoiseVisualizer2D {
 
     float scale = 50f;
     double[][] densities = new double[width][height];

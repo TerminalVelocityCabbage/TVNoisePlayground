@@ -7,7 +7,7 @@ import com.neusfear.utils.VisualizationQuadrant;
 
 import java.awt.image.BufferedImage;
 
-public class VoronoiBiomeVisualizer extends NoiseVisualizer{
+public class VoronoiBiomeVisualizer extends NoiseVisualizer2D {
 
     private static final boolean SWIRL = true;
     private static final double SCALE = 0.005;

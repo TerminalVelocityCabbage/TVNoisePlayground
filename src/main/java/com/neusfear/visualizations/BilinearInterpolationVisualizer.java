@@ -6,7 +6,7 @@ import com.neusfear.utils.VisualizationQuadrant;
 
 import java.awt.image.BufferedImage;
 
-public class BilinearInterpolationVisualizer extends NoiseVisualizer {
+public class BilinearInterpolationVisualizer extends NoiseVisualizer2D {
 
     int spacing = 4; //width and height need to be divisible by this number
     float scale = 50f;
