@@ -61,7 +61,7 @@ public class VoronoiBiomeVisualizer extends NoiseVisualizer{
     @Override
     public BufferedImage getImage() {
 
-        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);;
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         // Normalize and write pixels
         for (int x = 0; x < height; x++) {

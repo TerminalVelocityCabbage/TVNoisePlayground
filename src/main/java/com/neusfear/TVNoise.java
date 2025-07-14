@@ -1,7 +1,8 @@
 package com.neusfear;
 
+import com.neusfear.visualizations.Basic2DNoiseVisualizer;
 import com.neusfear.visualizations.NoiseViewer;
-import com.neusfear.visualizations.VoronoiBiomeVisualizer;
+import com.neusfear.visualizations.BilinearInterpolationVisualizer;
 
 import javax.swing.*;
 
@@ -19,10 +20,10 @@ public class TVNoise {
         frame.setSize(width, height);
 
         frame.add(new NoiseViewer(width, height,
-                new VoronoiBiomeVisualizer(TOP_LEFT, width / 2, height / 2, 0),
-                new VoronoiBiomeVisualizer(TOP_RIGHT, width / 2, height / 2, 2),
-                new VoronoiBiomeVisualizer(BOTTOM_LEFT, width / 2, height / 2, 3),
-                new VoronoiBiomeVisualizer(BOTTOM_RIGHT, width / 2, height / 2, 3)
+                new Basic2DNoiseVisualizer(TOP_LEFT, width / 2, height / 2, 0),
+                new Basic2DNoiseVisualizer(TOP_RIGHT, width / 2, height / 2, 0),
+                new BilinearInterpolationVisualizer(BOTTOM_LEFT, width / 2, height / 2, 0),
+                new BilinearInterpolationVisualizer(BOTTOM_RIGHT, width / 2, height / 2, 0)
         ));
 
         frame.setVisible(true);
