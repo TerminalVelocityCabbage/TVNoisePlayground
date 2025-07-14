@@ -27,8 +27,8 @@ public class TVNoise {
         frame.add(new NoiseViewer3D(width, height, depth,
                 new Basic3DNoiseVisualizer(TOP_LEFT, width / 2, height / 2, depth, 0),
                 new Basic3DNoiseVisualizer(TOP_RIGHT, width / 2, height / 2, depth, 0),
-                new Basic3DNoiseVisualizer(BOTTOM_LEFT, width / 2, height / 2, depth, 0),
-                new Basic3DNoiseVisualizer(BOTTOM_RIGHT, width / 2, height / 2, depth, 0)
+                new TrilinearInterpolationVisualizer(BOTTOM_LEFT, width / 2, height / 2, depth, 0),
+                new TrilinearInterpolationVisualizer(BOTTOM_RIGHT, width / 2, height / 2, depth, 0)
         ));
 
         frame.setVisible(true);
