@@ -3,12 +3,22 @@ package com.neusfear.visualizations;
 import com.neusfear.utils.VisualizationQuadrant;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class NoiseViewer extends JPanel {
 
     Map<VisualizationQuadrant, List<Float>> drawTimes;
+
+    public NoiseViewer() {
+        drawTimes = new HashMap<>();
+        drawTimes.put(VisualizationQuadrant.TOP_LEFT, new ArrayList<>());
+        drawTimes.put(VisualizationQuadrant.TOP_RIGHT, new ArrayList<>());
+        drawTimes.put(VisualizationQuadrant.BOTTOM_LEFT, new ArrayList<>());
+        drawTimes.put(VisualizationQuadrant.BOTTOM_RIGHT, new ArrayList<>());
+    }
 
     protected float getAverageDrawTime(VisualizationQuadrant quadrant) {
 

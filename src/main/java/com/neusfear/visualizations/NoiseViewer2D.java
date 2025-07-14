@@ -33,12 +33,6 @@ public class NoiseViewer2D extends NoiseViewer {
         this.width = width;
         this.height = height;
 
-        this.drawTimes = new HashMap<>();
-        this.drawTimes.put(TOP_LEFT, new ArrayList<>());
-        this.drawTimes.put(TOP_RIGHT, new ArrayList<>());
-        this.drawTimes.put(BOTTOM_LEFT, new ArrayList<>());
-        this.drawTimes.put(BOTTOM_RIGHT, new ArrayList<>());
-
         // Start animation thread
         startAnimation(1000, tlVisualizer, trVisualizer, blVisualizer, brVisualizer);
     }
