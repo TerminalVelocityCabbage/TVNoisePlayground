@@ -18,18 +18,18 @@ public class TVNoise {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(width, height);
 
-//        frame.add(new NoiseViewer2D(width, height,
-//                new Basic2DNoiseVisualizer(TOP_LEFT, width / 2, height / 2, 0),
-//                new Basic2DNoiseVisualizer(TOP_RIGHT, width / 2, height / 2, 0),
-//                new BilinearInterpolationVisualizer(BOTTOM_LEFT, width / 2, height / 2, 0),
-//                new BilinearInterpolationVisualizer(BOTTOM_RIGHT, width / 2, height / 2, 0)
-//        ));
-        frame.add(new NoiseViewer3D(width, height, depth,
-                new Basic3DNoiseVisualizer(TOP_LEFT, width / 2, height / 2, depth, 0),
-                new Basic3DNoiseVisualizer(TOP_RIGHT, width / 2, height / 2, depth, 0),
-                new TrilinearInterpolationVisualizer(BOTTOM_LEFT, width / 2, height / 2, depth, 0),
-                new TrilinearInterpolationVisualizer(BOTTOM_RIGHT, width / 2, height / 2, depth, 0)
+        frame.add(new NoiseViewer2D(width, height,
+                new VoronoiRiverVisualizer(TOP_LEFT, width / 2, height / 2, 0),
+                new VoronoiRiverVisualizer(TOP_RIGHT, width / 2, height / 2, 0),
+                new VoronoiRiverVisualizer(BOTTOM_LEFT, width / 2, height / 2, 0),
+                new VoronoiRiverVisualizer(BOTTOM_RIGHT, width / 2, height / 2, 0)
         ));
+//        frame.add(new NoiseViewer3D(width, height, depth,
+//                new Basic3DNoiseVisualizer(TOP_LEFT, width / 2, height / 2, depth, 0),
+//                new Basic3DNoiseVisualizer(TOP_RIGHT, width / 2, height / 2, depth, 0),
+//                new TrilinearInterpolationVisualizer(BOTTOM_LEFT, width / 2, height / 2, depth, 0),
+//                new TrilinearInterpolationVisualizer(BOTTOM_RIGHT, width / 2, height / 2, depth, 0)
+//        ));
 
         frame.setVisible(true);
     }
